@@ -1,5 +1,5 @@
 import { logout, getUserInfo } from '@/api/login'
-// import { baseRequest } from '@/api/base'
+import { baseRequest } from '@/api/base'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 // import { closeWebSocket } from '@/utils/websocket'
 
@@ -103,12 +103,12 @@ const user = {
           commit('SET_PORT', data.port)
           commit('SET_BG_COLOR', data.color)
           commit('SET_LANGUAGE', data.language)
-          // baseRequest('/checkQuestion/checkIsNormalUser').then(response => {
-          //   commit('SET_NORMAL_USER', response.data.item.result)
-          // })
-          // baseRequest('/eastDataQuery/getCjrq').then(response => {
-          //   commit('SET_CURRENT_DATE', response.data.item.result)
-          // })
+          baseRequest('/checkQuestion/checkIsNormalUser').then(response => {
+            commit('SET_NORMAL_USER', response.data.item.result)
+          })
+          baseRequest('/eastDataQuery/getCjrq').then(response => {
+            commit('SET_CURRENT_DATE', response.data.item.result)
+          })
           resolve(response)
         }).catch(error => {
           reject(error)
